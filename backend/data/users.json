@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": "c7578b4b-9edd-4fcf-9f7e-51421695b828",
+      "name": "Vaishnavi Midgule",
+      "email": "vaishnavi@gmail.com",
+      "passwordHash": "$2b$12$aHNuks8UMZq3HA0XhO3ZveQv7N4xdmZV0d3CDILMTjwm..I9XVyFC",
+      "createdAt": "2026-10-26T13:38:54.057Z"
+    }
+  ]
+}

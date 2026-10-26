@@ -1,0 +1,98 @@
+[
+  {
+    "id": "web-basics",
+    "title": "Web Development Foundations",
+    "category": "web",
+    "level": "beginner",
+    "duration": "4 weeks",
+    "lessons": 12,
+    "icon": "🌐",
+    "description": "Build your first responsive pages with HTML, CSS and JavaScript.",
+    "skills": ["HTML", "CSS", "JavaScript"],
+    "quiz": [
+      {"question": "Which language structures the content of a web page?", "options": ["CSS", "HTML", "SQL", "Python"], "answer": 1},
+      {"question": "Which CSS property changes text colour?", "options": ["font-style", "background", "color", "text-align"], "answer": 2},
+      {"question": "Which keyword declares a block-scoped variable in JavaScript?", "options": ["let", "echo", "define", "dim"], "answer": 0}
+    ]
+  },
+  {
+    "id": "python-starter",
+    "title": "Python Programming Starter",
+    "category": "programming",
+    "level": "beginner",
+    "duration": "5 weeks",
+    "lessons": 15,
+    "icon": "🐍",
+    "description": "Learn variables, conditions, loops, functions and small practical programs.",
+    "skills": ["Python", "Logic", "Functions"],
+    "quiz": [
+      {"question": "Which symbol starts a comment in Python?", "options": ["//", "#", "<!--", "/*"], "answer": 1},
+      {"question": "Which type stores True or False?", "options": ["str", "int", "bool", "list"], "answer": 2},
+      {"question": "Which keyword defines a function?", "options": ["func", "function", "def", "method"], "answer": 2}
+    ]
+  },
+  {
+    "id": "data-thinking",
+    "title": "Data Analytics Essentials",
+    "category": "data",
+    "level": "intermediate",
+    "duration": "6 weeks",
+    "lessons": 18,
+    "icon": "📊",
+    "description": "Explore data cleaning, basic statistics, charts and practical insights.",
+    "skills": ["Python", "Data", "Charts"],
+    "quiz": [
+      {"question": "Which chart is useful for comparing categories?", "options": ["Bar chart", "Map only", "Audio track", "Paragraph"], "answer": 0},
+      {"question": "What is a missing value?", "options": ["A duplicate chart", "A value not present", "A file name", "A function"], "answer": 1},
+      {"question": "Which Python library is commonly used for tabular data?", "options": ["Pandas", "Flask only", "Turtle only", "Pygame only"], "answer": 0}
+    ]
+  },
+  {
+    "id": "backend-api",
+    "title": "Backend APIs with Node.js",
+    "category": "backend",
+    "level": "intermediate",
+    "duration": "5 weeks",
+    "lessons": 16,
+    "icon": "⚙️",
+    "description": "Create REST endpoints, validate requests and connect a frontend to an API.",
+    "skills": ["Node.js", "Express", "REST API"],
+    "quiz": [
+      {"question": "What does GET normally do in a REST API?", "options": ["Deletes data", "Reads data", "Encrypts a disk", "Styles a page"], "answer": 1},
+      {"question": "Which package is used as the web framework here?", "options": ["Express", "NumPy", "React Native", "Pillow"], "answer": 0},
+      {"question": "What does JSON stand for?", "options": ["Java Source Open Network", "JavaScript Object Notation", "Joined System Output Name", "None"], "answer": 1}
+    ]
+  },
+  {
+    "id": "ui-design",
+    "title": "UI Design Principles",
+    "category": "design",
+    "level": "beginner",
+    "duration": "3 weeks",
+    "lessons": 9,
+    "icon": "🎨",
+    "description": "Practice layout, hierarchy, spacing, colour and accessible interface design.",
+    "skills": ["UI", "Accessibility", "Layout"],
+    "quiz": [
+      {"question": "What does visual hierarchy help users do?", "options": ["Find important content", "Increase file size", "Run a server", "Compile Python"], "answer": 0},
+      {"question": "Which improves readability?", "options": ["Tiny text", "Consistent spacing", "Low contrast", "Crowded layouts"], "answer": 1},
+      {"question": "What is responsive design?", "options": ["A layout adapting to screens", "A database", "A password format", "A browser extension"], "answer": 0}
+    ]
+  },
+  {
+    "id": "ml-intro",
+    "title": "Introduction to Machine Learning",
+    "category": "ai",
+    "level": "advanced",
+    "duration": "7 weeks",
+    "lessons": 20,
+    "icon": "🤖",
+    "description": "Understand datasets, features, model training and evaluation basics.",
+    "skills": ["ML", "Datasets", "Model Evaluation"],
+    "quiz": [
+      {"question": "What is a dataset?", "options": ["A collection of data", "A CSS selector", "A server port", "A keyboard"], "answer": 0},
+      {"question": "What is a model trained to do?", "options": ["Learn patterns", "Paint a monitor", "Install npm", "Format a URL"], "answer": 0},
+      {"question": "Why keep test data separate?", "options": ["To estimate performance on unseen data", "To make files larger", "To avoid all errors", "To remove labels always"], "answer": 0}
+    ]
+  }
+]
