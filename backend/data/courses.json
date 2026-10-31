@@ -1,3 +1,4 @@
+
 [
   {
     "id": "web-basics",
@@ -6,13 +7,81 @@
     "level": "beginner",
     "duration": "4 weeks",
     "lessons": 12,
-    "icon": "🌐",
-    "description": "Build your first responsive pages with HTML, CSS and JavaScript.",
     "skills": ["HTML", "CSS", "JavaScript"],
     "quiz": [
-      {"question": "Which language structures the content of a web page?", "options": ["CSS", "HTML", "SQL", "Python"], "answer": 1},
-      {"question": "Which CSS property changes text colour?", "options": ["font-style", "background", "color", "text-align"], "answer": 2},
-      {"question": "Which keyword declares a block-scoped variable in JavaScript?", "options": ["let", "echo", "define", "dim"], "answer": 0}
+      {
+        "id": 0,
+        "type": "mcq",
+        "question": "Which HTML tag is used to create a hyperlink?",
+        "options": ["<link>", "<a>", "<href>", "<url>"],
+        "answer": 1
+      },
+      {
+        "id": 1,
+        "type": "mcq",
+        "question": "Which HTML tag represents the main heading?",
+        "options": ["<head>", "<h6>", "<h1>", "<title>"],
+        "answer": 2
+      },
+      {
+        "id": 2,
+        "type": "mcq",
+        "question": "Which CSS property adds space inside an element?",
+        "options": ["margin", "padding", "border", "outline"],
+        "answer": 1
+      },
+      {
+        "id": 3,
+        "type": "mcq",
+        "question": "Which CSS layout system is useful for arranging items in a row or column?",
+        "options": ["Float", "Flexbox", "Position", "Overflow"],
+        "answer": 1
+      },
+      {
+        "id": 4,
+        "type": "mcq",
+        "question": "Which JavaScript method selects an element by its ID?",
+        "options": [
+          "getElementByClass()",
+          "queryById()",
+          "getElementById()",
+          "selectId()"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 5,
+        "type": "mcq",
+        "question": "Which HTML attribute provides alternative text for an image?",
+        "options": ["src", "alt", "href", "title"],
+        "answer": 1
+      },
+      {
+        "id": 6,
+        "type": "mcq",
+        "question": "Which symbol is used for an ID selector in CSS?",
+        "options": [".", "#", "*", "&"],
+        "answer": 1
+      },
+      {
+        "id": 7,
+        "type": "mcq",
+        "question": "Which keyword declares a block-scoped variable in JavaScript?",
+        "options": ["var", "let", "define", "dim"],
+        "answer": 1
+      },
+      {
+        "id": 8,
+        "type": "code",
+        "question": "Write an HTML button with the text Save.",
+        "expectedAnswer": "<button>Save</button>"
+      },
+      {
+        "id": 9,
+        "type": "code",
+        "question": "Declare a JavaScript variable named count with an initial value of 0 using let.",
+        "expectedAnswer": "let count = 0;"
+      }
     ]
   },
   {
@@ -22,45 +91,269 @@
     "level": "beginner",
     "duration": "5 weeks",
     "lessons": 15,
-    "icon": "🐍",
-    "description": "Learn variables, conditions, loops, functions and small practical programs.",
     "skills": ["Python", "Logic", "Functions"],
     "quiz": [
-      {"question": "Which symbol starts a comment in Python?", "options": ["//", "#", "<!--", "/*"], "answer": 1},
-      {"question": "Which type stores True or False?", "options": ["str", "int", "bool", "list"], "answer": 2},
-      {"question": "Which keyword defines a function?", "options": ["func", "function", "def", "method"], "answer": 2}
+      {
+        "id": 0,
+        "type": "mcq",
+        "question": "Which function displays output in Python?",
+        "options": ["echo()", "print()", "displayText()", "write()"],
+        "answer": 1
+      },
+      {
+        "id": 1,
+        "type": "mcq",
+        "question": "Which data type is used to store multiple values in an ordered collection?",
+        "options": ["int", "bool", "list", "float"],
+        "answer": 2
+      },
+      {
+        "id": 2,
+        "type": "mcq",
+        "question": "Which operator checks whether two values are equal?",
+        "options": ["=", "==", "!=", "==="],
+        "answer": 1
+      },
+      {
+        "id": 3,
+        "type": "mcq",
+        "question": "Which keyword is used for conditional statements in Python?",
+        "options": ["when", "if", "check", "condition"],
+        "answer": 1
+      },
+      {
+        "id": 4,
+        "type": "mcq",
+        "question": "What does range(3) generate?",
+        "options": ["1, 2, 3", "0, 1, 2", "0, 1, 2, 3", "3, 2, 1"],
+        "answer": 1
+      },
+      {
+        "id": 5,
+        "type": "mcq",
+        "question": "Which symbol starts a comment in Python?",
+        "options": ["//", "#", "/*", "--"],
+        "answer": 1
+      },
+      {
+        "id": 6,
+        "type": "mcq",
+        "question": "Which keyword is used to define a function?",
+        "options": ["function", "fun", "def", "method"],
+        "answer": 2
+      },
+      {
+        "id": 7,
+        "type": "mcq",
+        "question": "Which data type represents True or False?",
+        "options": ["String", "Boolean", "Integer", "List"],
+        "answer": 1
+      },
+      {
+        "id": 8,
+        "type": "code",
+        "question": "Write Python code to print Hello, World!",
+        "expectedAnswer": "print(\"Hello, World!\")"
+      },
+      {
+        "id": 9,
+        "type": "code",
+        "question": "Write a Python function named add that accepts a and b and returns their sum.",
+        "expectedAnswer": "def add(a, b):\n    return a + b"
+      }
     ]
   },
   {
     "id": "data-thinking",
     "title": "Data Analytics Essentials",
     "category": "data",
-    "level": "intermediate",
+    "level": "beginner",
     "duration": "6 weeks",
     "lessons": 18,
-    "icon": "📊",
-    "description": "Explore data cleaning, basic statistics, charts and practical insights.",
     "skills": ["Python", "Data", "Charts"],
     "quiz": [
-      {"question": "Which chart is useful for comparing categories?", "options": ["Bar chart", "Map only", "Audio track", "Paragraph"], "answer": 0},
-      {"question": "What is a missing value?", "options": ["A duplicate chart", "A value not present", "A file name", "A function"], "answer": 1},
-      {"question": "Which Python library is commonly used for tabular data?", "options": ["Pandas", "Flask only", "Turtle only", "Pygame only"], "answer": 0}
+      {
+        "id": 0,
+        "type": "mcq",
+        "question": "Which measure represents the middle value in an ordered dataset?",
+        "options": ["Mean", "Median", "Mode", "Range"],
+        "answer": 1
+      },
+      {
+        "id": 1,
+        "type": "mcq",
+        "question": "What does CSV stand for?",
+        "options": [
+          "Computer System Value",
+          "Comma Separated Values",
+          "Common Standard Variable",
+          "Column Sorted Values"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 2,
+        "type": "mcq",
+        "question": "Which Python library is commonly used for data analysis?",
+        "options": ["Pandas", "Flask", "Django", "Tkinter"],
+        "answer": 0
+      },
+      {
+        "id": 3,
+        "type": "mcq",
+        "question": "Which Pandas method displays the first five rows by default?",
+        "options": ["tail()", "show()", "head()", "first()"],
+        "answer": 2
+      },
+      {
+        "id": 4,
+        "type": "mcq",
+        "question": "What is an outlier?",
+        "options": [
+          "A missing column",
+          "A value significantly different from other values",
+          "A duplicate file",
+          "A chart title"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 5,
+        "type": "mcq",
+        "question": "Which chart is commonly used to display a frequency distribution?",
+        "options": ["Histogram", "Pie chart", "Map", "Line of code"],
+        "answer": 0
+      },
+      {
+        "id": 6,
+        "type": "mcq",
+        "question": "What does data cleaning involve?",
+        "options": [
+          "Adding random values",
+          "Fixing missing, incorrect, or duplicate data",
+          "Deleting all columns",
+          "Changing the computer"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 7,
+        "type": "mcq",
+        "question": "Which chart is useful for showing trends over time?",
+        "options": ["Pie chart", "Line chart", "Histogram", "Table only"],
+        "answer": 1
+      },
+      {
+        "id": 8,
+        "type": "code",
+        "question": "Write Python code using Pandas to read data.csv into a variable named df.",
+        "expectedAnswer": "df = pd.read_csv(\"data.csv\")"
+      },
+      {
+        "id": 9,
+        "type": "code",
+        "question": "Write Python code to remove rows containing missing values from df and store the result back in df.",
+        "expectedAnswer": "df = df.dropna()"
+      }
     ]
   },
   {
     "id": "backend-api",
     "title": "Backend APIs with Node.js",
     "category": "backend",
-    "level": "intermediate",
+    "level": "beginner",
     "duration": "5 weeks",
     "lessons": 16,
-    "icon": "⚙️",
-    "description": "Create REST endpoints, validate requests and connect a frontend to an API.",
     "skills": ["Node.js", "Express", "REST API"],
     "quiz": [
-      {"question": "What does GET normally do in a REST API?", "options": ["Deletes data", "Reads data", "Encrypts a disk", "Styles a page"], "answer": 1},
-      {"question": "Which package is used as the web framework here?", "options": ["Express", "NumPy", "React Native", "Pillow"], "answer": 0},
-      {"question": "What does JSON stand for?", "options": ["Java Source Open Network", "JavaScript Object Notation", "Joined System Output Name", "None"], "answer": 1}
+      {
+        "id": 0,
+        "type": "mcq",
+        "question": "Which HTTP status code usually indicates successful resource creation?",
+        "options": ["200", "201", "404", "500"],
+        "answer": 1
+      },
+      {
+        "id": 1,
+        "type": "mcq",
+        "question": "Which HTTP method is commonly used to create a resource?",
+        "options": ["GET", "POST", "DELETE", "HEAD"],
+        "answer": 1
+      },
+      {
+        "id": 2,
+        "type": "mcq",
+        "question": "What is Express.js?",
+        "options": [
+          "A database",
+          "A Node.js web framework",
+          "A programming language",
+          "An operating system"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 3,
+        "type": "mcq",
+        "question": "What is middleware in Express?",
+        "options": [
+          "A function that runs during the request-response cycle",
+          "A database table",
+          "A CSS property",
+          "A browser extension"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 4,
+        "type": "mcq",
+        "question": "Which Express property accesses route parameters?",
+        "options": ["req.body", "req.params", "req.query", "req.headers"],
+        "answer": 1
+      },
+      {
+        "id": 5,
+        "type": "mcq",
+        "question": "What does HTTP status code 404 mean?",
+        "options": [
+          "Success",
+          "Unauthorized",
+          "Resource not found",
+          "Server started"
+        ],
+        "answer": 2
+      },
+      {
+        "id": 6,
+        "type": "mcq",
+        "question": "Which Node.js module is commonly used to create an HTTP server?",
+        "options": ["http", "path", "crypto", "events"],
+        "answer": 0
+      },
+      {
+        "id": 7,
+        "type": "mcq",
+        "question": "What does REST stand for?",
+        "options": [
+          "Remote Execution Service Technology",
+          "Representational State Transfer",
+          "Request System Transfer",
+          "Resource Server Tool"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 8,
+        "type": "code",
+        "question": "Write an Express GET route for /health that returns JSON { status: \"ok\" }. Assume app is already created.",
+        "expectedAnswer": "app.get(\"/health\", (req, res) => { res.json({ status: \"ok\" }); });"
+      },
+      {
+        "id": 9,
+        "type": "code",
+        "question": "Write JavaScript code to parse the JSON string stored in rawData and assign the result to a constant named data.",
+        "expectedAnswer": "const data = JSON.parse(rawData);"
+      }
     ]
   },
   {
@@ -70,29 +363,215 @@
     "level": "beginner",
     "duration": "3 weeks",
     "lessons": 9,
-    "icon": "🎨",
-    "description": "Practice layout, hierarchy, spacing, colour and accessible interface design.",
     "skills": ["UI", "Accessibility", "Layout"],
     "quiz": [
-      {"question": "What does visual hierarchy help users do?", "options": ["Find important content", "Increase file size", "Run a server", "Compile Python"], "answer": 0},
-      {"question": "Which improves readability?", "options": ["Tiny text", "Consistent spacing", "Low contrast", "Crowded layouts"], "answer": 1},
-      {"question": "What is responsive design?", "options": ["A layout adapting to screens", "A database", "A password format", "A browser extension"], "answer": 0}
+      {
+        "id": 0,
+        "type": "mcq",
+        "question": "Why is high color contrast important in UI design?",
+        "options": [
+          "It increases file size",
+          "It improves readability and accessibility",
+          "It removes images",
+          "It makes code shorter"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 1,
+        "type": "mcq",
+        "question": "What does whitespace mean in UI design?",
+        "options": [
+          "Only white backgrounds",
+          "Empty space between elements",
+          "A type of font",
+          "A button style"
+        ],
+        "answer": 1
+      },
+      {
+        "id": 2,
+        "type": "mcq",
+        "question": "What is a primary action in a user interface?",
+        "options": [
+          "The main action users are expected to take",
+          "A background image",
+          "A footer link",
+          "A decorative icon"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 3,
+        "type": "mcq",
+        "question": "What does accessibility aim to achieve?",
+        "options": [
+          "Make interfaces usable by people with different abilities",
+          "Make websites slower",
+          "Remove navigation",
+          "Use only images"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 4,
+        "type": "mcq",
+        "question": "Which CSS unit is relative to the root element font size?",
+        "options": ["px", "em", "rem", "%"],
+        "answer": 2
+      },
+      {
+        "id": 5,
+        "type": "mcq",
+        "question": "What is responsive design?",
+        "options": [
+          "Design that adapts to different screen sizes",
+          "Design with only fixed widths",
+          "Design without CSS",
+          "Design for desktop only"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 6,
+        "type": "mcq",
+        "question": "Which HTML element is best for a clickable action?",
+        "options": ["<div>", "<span>", "<button>", "<section>"],
+        "answer": 2
+      },
+      {
+        "id": 7,
+        "type": "mcq",
+        "question": "What does visual hierarchy help users understand?",
+        "options": [
+          "The importance and order of content",
+          "The server password",
+          "The database structure",
+          "The programming language"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 8,
+        "type": "code",
+        "question": "Write a CSS class named card that applies 16px of padding.",
+        "expectedAnswer": ".card { padding: 16px; }"
+      },
+      {
+        "id": 9,
+        "type": "code",
+        "question": "Write a CSS media query for screen widths up to 600px.",
+        "expectedAnswer": "@media (max-width: 600px) { }"
+      }
     ]
   },
   {
     "id": "ml-intro",
     "title": "Introduction to Machine Learning",
     "category": "ai",
-    "level": "advanced",
+    "level": "beginner",
     "duration": "7 weeks",
     "lessons": 20,
-    "icon": "🤖",
-    "description": "Understand datasets, features, model training and evaluation basics.",
     "skills": ["ML", "Datasets", "Model Evaluation"],
     "quiz": [
-      {"question": "What is a dataset?", "options": ["A collection of data", "A CSS selector", "A server port", "A keyboard"], "answer": 0},
-      {"question": "What is a model trained to do?", "options": ["Learn patterns", "Paint a monitor", "Install npm", "Format a URL"], "answer": 0},
-      {"question": "Why keep test data separate?", "options": ["To estimate performance on unseen data", "To make files larger", "To avoid all errors", "To remove labels always"], "answer": 0}
+      {
+        "id": 0,
+        "type": "mcq",
+        "question": "What are features in machine learning?",
+        "options": [
+          "Input variables used by a model",
+          "Only the final predictions",
+          "Computer hardware",
+          "Error messages"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 1,
+        "type": "mcq",
+        "question": "What is overfitting?",
+        "options": [
+          "A model performs well on training data but poorly on unseen data",
+          "A model has no training data",
+          "A model is always correct",
+          "A dataset has no columns"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 2,
+        "type": "mcq",
+        "question": "Which task predicts a continuous numerical value?",
+        "options": ["Classification", "Regression", "Clustering", "Sorting"],
+        "answer": 1
+      },
+      {
+        "id": 3,
+        "type": "mcq",
+        "question": "What does accuracy measure in a classification model?",
+        "options": [
+          "The percentage of correct predictions",
+          "The number of dataset columns",
+          "The training time only",
+          "The size of the computer"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 4,
+        "type": "mcq",
+        "question": "What is normalization commonly used for?",
+        "options": [
+          "Scaling numerical features to a comparable range",
+          "Deleting all data",
+          "Increasing the number of labels",
+          "Renaming files"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 5,
+        "type": "mcq",
+        "question": "What is supervised learning?",
+        "options": [
+          "Learning from labeled examples",
+          "Learning without any data",
+          "Only storing files",
+          "Writing programs without input"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 6,
+        "type": "mcq",
+        "question": "Why is a test dataset used?",
+        "options": [
+          "To evaluate performance on unseen data",
+          "To train the model repeatedly",
+          "To remove all features",
+          "To create a user interface"
+        ],
+        "answer": 0
+      },
+      {
+        "id": 7,
+        "type": "mcq",
+        "question": "Which library is widely used for machine learning in Python?",
+        "options": ["Scikit-learn", "Express", "Bootstrap", "React"],
+        "answer": 0
+      },
+      {
+        "id": 8,
+        "type": "code",
+        "question": "Write Python code to split X and y into training and testing datasets using an 80/20 split and random_state=42. Assume train_test_split is imported.",
+        "expectedAnswer": "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)"
+      },
+      {
+        "id": 9,
+        "type": "code",
+        "question": "Write Python code to train model using X_train and y_train.",
+        "expectedAnswer": "model.fit(X_train, y_train)"
+      }
     ]
   }
 ]

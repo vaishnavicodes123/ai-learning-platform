@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -55,9 +54,9 @@ function App() {
   const [answers, setAnswers] = useState({});
   const [quizResult, setQuizResult] = useState(null);
   const [loading, setLoading] = useState(false);
+
   const [apiError, setApiError] = useState("");
 
-  // Restore the user's login session when the app opens.
   useEffect(() => {
     let cancelled = false;
 
@@ -94,15 +93,12 @@ function App() {
       setRecommendations(recData);
       setApiError("");
     } catch (error) {
-      setApiError(
-        error.message || "Could not load your learning dashboard."
-      );
+      setApiError(error.message || "Could not load your learning dashboard.");
     } finally {
       setLoading(false);
     }
   }
 
-  // Load the dashboard only after a user has logged in.
   useEffect(() => {
     if (user) {
       refresh();
@@ -114,7 +110,6 @@ function App() {
     }
   }, [user]);
 
-  // Refresh recommendations when the learning goal or level changes.
   useEffect(() => {
     if (!user) return;
 
@@ -149,26 +144,19 @@ function App() {
     }
   }
 
-  async function updateProgress(enrollment, progress) {
-    try {
-      await api(`/enrollments/${enrollment.id}/progress`, {
-        method: "PATCH",
-        body: JSON.stringify({ progress })
-      });
-
-      await refresh();
-      setNotice("Your learning progress was updated.");
-    } catch (error) {
-      setNotice(error.message);
-    }
-  }
-
   async function openQuiz(course) {
     try {
       const data = await api(`/quizzes/${course.id}`);
+
       setQuiz({ ...data, course });
       setAnswers({});
       setQuizResult(null);
+
+      if (data.alreadyGiven) {
+        setNotice("Test already given. You have used both attempts.");
+      } else {
+        setNotice("");
+      }
     } catch (error) {
       setNotice(error.message);
     }
@@ -178,10 +166,17 @@ function App() {
     if (!quiz) return;
 
     try {
-      const result = await api(`/quizzes/${quiz.courseId}/submit`, {
+     const courseId = quiz.courseId || quiz.course?.id;
+
+const result = await api(`/quizzes/${courseId}/submit`, {
         method: "POST",
         body: JSON.stringify({
-          answers: quiz.questions.map((q) => answers[q.id] ?? -1)
+          answers: quiz.questions.map((question) => ({
+            questionId: question.id,
+            answer:
+              answers[question.id] ??
+              (question.type === "code" ? "" : -1)
+          }))
         })
       });
 
@@ -211,16 +206,10 @@ function App() {
     setQuery("");
   }
 
-  // Show a loading screen while checking the saved session.
   if (!authChecked) {
-    return (
-      <div className="auth-loading">
-        Checking your session...
-      </div>
-    );
+    return <div className="auth-loading">Checking your session...</div>;
   }
 
-  // Show the login/register screen if the user is not logged in.
   if (!user) {
     return <AuthScreen onLogin={setUser} />;
   }
@@ -324,10 +313,7 @@ function App() {
           <div className="notice">
             <CheckCircle2 size={17} />
             {notice}
-            <button
-              onClick={() => setNotice("")}
-              aria-label="Dismiss"
-            >
+            <button onClick={() => setNotice("")} aria-label="Dismiss">
               <X size={16} />
             </button>
           </div>
@@ -474,7 +460,6 @@ function App() {
                     <ProgressRow
                       key={enrollment.id}
                       enrollment={enrollment}
-                      onUpdate={updateProgress}
                       onQuiz={openQuiz}
                     />
                   ))}
@@ -555,7 +540,6 @@ function App() {
                   <ProgressRow
                     key={enrollment.id}
                     enrollment={enrollment}
-                    onUpdate={updateProgress}
                     onQuiz={openQuiz}
                   />
                 ))}
@@ -593,7 +577,7 @@ function App() {
             <div className="modal-head">
               <div>
                 <span className="eyebrow">QUICK KNOWLEDGE CHECK</span>
-                <h2>{quiz.title}</h2>
+                <h2>{quiz.title || quiz.course?.title}</h2>
               </div>
               <button
                 className="icon-button"
@@ -609,17 +593,88 @@ function App() {
                 <div className="result-badge">
                   <Trophy size={30} />
                 </div>
+
                 <h2>{quizResult.percentage}%</h2>
+
                 <p>
                   You answered {quizResult.score} out of {quizResult.total}{" "}
                   questions correctly.
                 </p>
-                <div className="result-feedback">{quizResult.feedback}</div>
+
+                <div className="result-summary">
+                  <span>Correct: {quizResult.correctCount ?? quizResult.score}</span>
+                  <span>
+                    Incorrect:{" "}
+                    {quizResult.incorrectCount ??
+                      quizResult.total - quizResult.score}
+                  </span>
+                  <span>Attempt: {quizResult.attemptNumber ?? "—"} of 2</span>
+                </div>
+
+                <div className="result-feedback">
+                  {quizResult.feedback ||
+                    (quizResult.passed
+                      ? "Congratulations! Course completed."
+                      : "Keep practising and try again.")}
+                </div>
+
+                {quizResult.review?.length > 0 && (
+                  <div className="answer-review">
+                    <h3>Detailed answer review</h3>
+
+                    {quizResult.review.map((item, index) => (
+                      <div
+                        className={`review-item ${
+                          item.isCorrect ? "review-correct" : "review-incorrect"
+                        }`}
+                        key={item.questionId || index}
+                      >
+                        <strong>
+                          {index + 1}. {item.question}
+                        </strong>
+
+                        <p>
+                          <b>Your answer:</b>{" "}
+                          {item.submittedAnswer || "Not answered"}
+                        </p>
+
+                        <p>
+                          <b>Correct answer:</b>{" "}
+                          {item.correctAnswer || "Not available"}
+                        </p>
+
+                        <span>
+                          {item.isCorrect ? "Correct answer" : "Incorrect answer"}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <button
+                  className="primary-button"
+                  onClick={() => {
+                    setQuiz(null);
+                    setQuizResult(null);
+                  }}
+                >
+                  Back to learning <ArrowRight size={16} />
+                </button>
+              </div>
+            ) : quiz.alreadyGiven ? (
+              <div className="quiz-result">
+                <div className="result-badge">
+                  <X size={30} />
+                </div>
+                <h2>Attempts completed</h2>
+                <p>
+                  Test already given. You have used both attempts.
+                </p>
                 <button
                   className="primary-button"
                   onClick={() => setQuiz(null)}
                 >
-                  Back to learning <ArrowRight size={16} />
+                  Back to learning
                 </button>
               </div>
             ) : (
@@ -629,13 +684,18 @@ function App() {
                     {Object.keys(answers).length} of {quiz.questions.length}{" "}
                     answered
                   </span>
+                  <span>
+                    Attempts remaining: {quiz.attemptsRemaining ?? 2}
+                  </span>
                   <div>
                     <i
                       style={{
                         width: `${
-                          (Object.keys(answers).length /
-                            quiz.questions.length) *
-                          100
+                          quiz.questions.length
+                            ? (Object.keys(answers).length /
+                                quiz.questions.length) *
+                              100
+                            : 0
                         }%`
                       }}
                     />
@@ -648,29 +708,45 @@ function App() {
                       <strong>
                         {i + 1}. {q.question}
                       </strong>
-                      <div className="options">
-                        {q.options.map((option, index) => (
-                          <label
-                            key={option}
-                            className={
-                              answers[q.id] === index ? "chosen" : ""
-                            }
-                          >
-                            <input
-                              type="radio"
-                              name={`q-${q.id}`}
-                              checked={answers[q.id] === index}
-                              onChange={() =>
-                                setAnswers((current) => ({
-                                  ...current,
-                                  [q.id]: index
-                                }))
+
+                      {q.type === "code" ? (
+                        <textarea
+                          className="code-answer"
+                          rows={6}
+                          placeholder="Write your code answer here..."
+                          value={answers[q.id] ?? ""}
+                          onChange={(e) =>
+                            setAnswers((current) => ({
+                              ...current,
+                              [q.id]: e.target.value
+                            }))
+                          }
+                        />
+                      ) : (
+                        <div className="options">
+                          {(q.options || []).map((option, index) => (
+                            <label
+                              key={index}
+                              className={
+                                answers[q.id] === index ? "chosen" : ""
                               }
-                            />
-                            {option}
-                          </label>
-                        ))}
-                      </div>
+                            >
+                              <input
+                                type="radio"
+                                name={`q-${q.id}`}
+                                checked={answers[q.id] === index}
+                                onChange={() =>
+                                  setAnswers((current) => ({
+                                    ...current,
+                                    [q.id]: index
+                                  }))
+                                }
+                              />
+                              {option}
+                            </label>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -678,6 +754,7 @@ function App() {
                 <button
                   className="primary-button wide-button"
                   onClick={submitQuiz}
+                  disabled={loading}
                 >
                   Submit answers <ArrowRight size={16} />
                 </button>
@@ -715,7 +792,9 @@ function CourseCard({ course, enrolled, onEnroll, onQuiz }) {
   return (
     <article className="course-card">
       <div className="course-card-top">
-        <div className={`course-emoji ${course.category}`}>{course.icon}</div>
+        <div className={`course-emoji ${course.category}`}>
+          {course.icon}
+        </div>
         <span className="level-pill">{course.level}</span>
       </div>
 
@@ -766,12 +845,9 @@ function CourseCard({ course, enrolled, onEnroll, onQuiz }) {
   );
 }
 
-function ProgressRow({ enrollment, onUpdate, onQuiz }) {
+function ProgressRow({ enrollment, onQuiz }) {
   const course = enrollment.course || {};
-  const next =
-    enrollment.progress >= 100
-      ? 100
-      : Math.min(100, enrollment.progress + 25);
+  const completed = Number(enrollment.progress) >= 100;
 
   return (
     <div className="progress-row">
@@ -782,30 +858,33 @@ function ProgressRow({ enrollment, onUpdate, onQuiz }) {
       <div className="progress-course">
         <strong>{course.title}</strong>
         <span>
-          {course.duration || "Self-paced"} · {enrollment.progress}% complete
+          {course.duration || "Self-paced"} ·{" "}
+          {completed ? "Completed" : `${enrollment.progress || 0}% complete`}
         </span>
         <div className="progress-track">
-          <i style={{ width: `${enrollment.progress}%` }} />
+          <i
+            style={{
+              width: `${Math.min(100, Number(enrollment.progress) || 0)}%`
+            }}
+          />
         </div>
       </div>
 
-      <div className="progress-percent">{enrollment.progress}%</div>
+      <div className="progress-percent">
+        {enrollment.progress || 0}%
+      </div>
 
       <div className="progress-actions">
-        <button
-          className="small-outline"
-          onClick={() => onUpdate(enrollment, next)}
-          disabled={enrollment.progress >= 100}
-        >
-          {enrollment.progress >= 100 ? "Completed" : "+ 25%"}
-        </button>
-        <button
-          className="icon-button"
-          onClick={() => onQuiz(course)}
-          title="Take quiz"
-        >
-          <Play size={16} />
-        </button>
+        {completed ? (
+          <span className="completion-status">Completed</span>
+        ) : (
+          <button
+            className="secondary-button"
+            onClick={() => onQuiz(course)}
+          >
+            Take test
+          </button>
+        )}
       </div>
     </div>
   );
